@@ -12,9 +12,11 @@ class GetAccountList(ListView):
     def get(self, request):
         context = {'navbar': 'accounts'}
         try:
-            context['accounts'] = Account.objects.get_accounts()
+            accounts = Account.objects.get_accounts()
+            context = {'accounts': accounts }
             return render(request, 'account_list.html', context)
 
         except Exception as e:
             print(e)
-        return render(request, 'account_list.html', context)
+
+        return render(request, 'account_list.html')

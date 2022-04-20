@@ -10,5 +10,4 @@ class MakePayment(ListView):
     """
 
     def get(self, request):
-        context = {'navbar': 'make_payment'}
-        return render(request, 'make_payment.html', context)
+        return render(request, 'make_payment.html')
