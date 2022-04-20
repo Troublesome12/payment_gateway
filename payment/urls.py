@@ -14,6 +14,8 @@ Including another URL conf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
+from payment.views import MakePayment
 
 urlpatterns = [
+    path('', MakePayment.as_view(), name="make-payment"),
 ]

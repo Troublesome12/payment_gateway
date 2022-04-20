@@ -17,5 +17,5 @@ from django.urls import path
 from account.views import GetAccountList
 
 urlpatterns = [
-    path('', GetAccountList.as_view()),
+    path('', GetAccountList.as_view(), name="account-list"),
 ]

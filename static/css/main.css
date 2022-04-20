@@ -1,0 +1,15 @@
+.navbar {
+    margin-bottom: 20px;
+}
+
+.navbar-brand {
+    font-size: 1.35rem;
+}
+
+nav .container-fluid {
+    margin: 0px 100px 0px 100;
+}
+
+.breadcrumb-item {
+    font-size: 1.25rem;
+}
