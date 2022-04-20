@@ -1,0 +1,24 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Payment Gateway</title>
+    {% endif %}
+</head>
+<body>
+    {% include "navbar.html" %}
+    <div class="container">
+		{% block content %}{% endblock content %}
+	</div>
+    {% include "footer.html" %}
+</body>
+</html>
