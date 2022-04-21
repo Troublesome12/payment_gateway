@@ -26,7 +26,8 @@ class AccountManager(models.Manager):
         return self.filter(pk=account_id).update(is_active=False)
 
     def update_balance(self, account_id, balance):
-        return self.filter(pk=account_id).update(balance=balance)
+        self.filter(pk=account_id).update(balance=balance)
+        return self.filter(pk=account_id).last()
 
 
 class Account(models.Model):

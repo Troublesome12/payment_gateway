@@ -19,12 +19,16 @@ class PaymentManager(models.Manager):
         return self.filter(from_account=account_id).annotate(
             receiver_name=F('to_account__holder_name'),
             receiver_account_no=F('to_account__account_no'),
+        ).order_by(
+            '-created_at'
         ).values('from_account', 'to_account', 'amount', 'receiver_name', 'receiver_account_no', 'created_at')
 
     def get_credits(self, account_id):
         return self.filter(to_account=account_id).annotate(
             sender_name=F('from_account__holder_name'),
             sender_account_no=F('from_account__account_no'),
+        ).order_by(
+            '-created_at'
         ).values('from_account', 'to_account', 'amount', 'sender_name', 'sender_account_no', 'created_at')
 
 class Payment(models.Model):

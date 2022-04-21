@@ -14,6 +14,7 @@
             <th scope="col">Receiver Account</th>
             <th scope="col">Account Holder</th>
             <th scope="col">Amount</th>
+            <th scope="col">Time</th>
             <th scope="col">Date</th>
         </tr>
         </thead>
@@ -23,7 +24,8 @@
                     <td>{{ debit.receiver_account_no }}</td>
                     <td>{{ debit.receiver_name }}</td>
                     <td>{{ debit.amount }}</td>
-                    <td>{{ debit.created_at | date }}</td>
+                    <td>{{ debit.created_at | date:"H:i" }}</td>
+                    <td>{{ debit.created_at | date:"F d, Y" }}</td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -36,6 +38,7 @@
             <th scope="col">Sender Account</th>
             <th scope="col">Account Holder</th>
             <th scope="col">Amount</th>
+            <th scope="col">Time</th>
             <th scope="col">Date</th>
         </tr>
         </thead>
@@ -45,7 +48,8 @@
                     <td>{{ credit.sender_account_no }}</td>
                     <td>{{ credit.sender_name }}</td>
                     <td>{{ credit.amount }}</td>
-                    <td>{{ credit.created_at | date }}</td>
+                    <td>{{ credit.created_at | date:"H:i" }}</td>
+                    <td>{{ credit.created_at | date:"F d, Y" }}</td>
                 </tr>
             {% endfor %}
         </tbody>

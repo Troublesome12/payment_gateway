@@ -23,7 +23,15 @@ class AccountPaymentListView(View):
     """
 
     def get(self, request, account_id, *args, **kwargs):
-        debit_payments = Payment.objects.get_debits(account_id)
-        credit_payments = Payment.objects.get_credits(account_id)
-        context = {"debits": debit_payments, "credits": credit_payments}
-        return render(request, 'account_payment_list.html', context)
+        try:
+            debit_payments = Payment.objects.get_debits(account_id)
+            credit_payments = Payment.objects.get_credits(account_id)
+            context = {"debits": debit_payments, "credits": credit_payments}
+            return render(request, 'account_payment_list.html', context)
+
+        except Exception as ex:
+            print(ex)
+
+        return render(request, 'account_list.html')
+
+

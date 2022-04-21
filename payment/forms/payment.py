@@ -3,6 +3,11 @@ from payment.models import Payment
 
 
 class PaymentForm(ModelForm):
+	def __init__(self, *args, **kwargs):
+		super(PaymentForm, self).__init__(*args, **kwargs)
+		self.fields['from_account'].label = 'Sender'
+		self.fields['to_account'].label = 'Receiver'
+
 	class Meta:
 		model = Payment
 		fields = ["from_account", "to_account", "amount"]
@@ -15,7 +20,7 @@ class PaymentForm(ModelForm):
 		amount = self.cleaned_data.get('amount')
 
 		if amount > from_account.balance:
-			self._errors['from_account'] = self.error_class(['Sender does\'t have enough balance to make this payment'])
+			self._errors['amount'] = self.error_class(['Sender does\'t have enough balance to make this payment'])
 
 		if amount <= 0:
 			self._errors['amount'] = self.error_class(['Amount must be a positive value'])
