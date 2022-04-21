@@ -13,3 +13,11 @@ nav .container-fluid {
 .breadcrumb-item {
     font-size: 1.25rem;
 }
+
+.balance {
+    margin-top: 13px;
+}
+
+.nav-item .active {
+    font-weight: 500;
+}

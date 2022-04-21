@@ -1,3 +1,4 @@
+from django.db.models import F
 from django.db import models
 
 import uuid
@@ -14,6 +15,17 @@ class PaymentManager(models.Manager):
     def get_payments(self):
         return self.all()
 
+    def get_debits(self, account_id):
+        return self.filter(from_account=account_id).annotate(
+            receiver_name=F('to_account__holder_name'),
+            receiver_account_no=F('to_account__account_no'),
+        ).values('from_account', 'to_account', 'amount', 'receiver_name', 'receiver_account_no', 'created_at')
+
+    def get_credits(self, account_id):
+        return self.filter(to_account=account_id).annotate(
+            sender_name=F('from_account__holder_name'),
+            sender_account_no=F('from_account__account_no'),
+        ).values('from_account', 'to_account', 'amount', 'sender_name', 'sender_account_no', 'created_at')
 
 class Payment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

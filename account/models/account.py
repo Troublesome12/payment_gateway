@@ -25,6 +25,9 @@ class AccountManager(models.Manager):
     def delete_account(self, account_id):
         return self.filter(pk=account_id).update(is_active=False)
 
+    def update_balance(self, account_id, balance):
+        return self.filter(pk=account_id).update(balance=balance)
+
 
 class Account(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
