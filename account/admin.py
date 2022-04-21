@@ -10,6 +10,7 @@ class AccountAdmin(admin.ModelAdmin):
         'id',
         'holder_name',
         'account_no',
+        'email',
         'balance',
         'is_active',
         'created_at',

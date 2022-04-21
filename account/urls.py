@@ -14,8 +14,8 @@ Including another URL conf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from account.views import GetAccountList
+from account.views import AccountListView
 
 urlpatterns = [
-    path('', GetAccountList.as_view(), name="account-list"),
+    path('', AccountListView.as_view(), name="account-list"),
 ]

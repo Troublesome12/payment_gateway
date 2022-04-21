@@ -48,6 +48,8 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'corsheaders',
     'django_extensions',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 PROJECT_APPS = [
@@ -168,7 +170,15 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, "static"),
 )
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Crispy Forms
+# https://github.com/django-crispy-forms/crispy-bootstrap5
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

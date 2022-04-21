@@ -1,9 +1,13 @@
 {%  extends 'main.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Make Payment</li>
-        </ol>
-    </nav>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            {{ form | crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit"> Make Payment</button>
+        </div>
+    </form>
 {% endblock content %}

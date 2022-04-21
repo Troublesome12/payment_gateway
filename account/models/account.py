@@ -10,7 +10,7 @@ class AccountManager(models.Manager):
         return self.create(**req_data)
 
     def get_accounts(self):
-        return self.filter(is_active=True).values('id', 'holder_name', 'account_no', 'balance')
+        return self.filter(is_active=True).values('id', 'holder_name', 'email', 'account_no', 'balance')
 
     def get_account_by_id(self, account_id):
         return self.filter(pk=account_id, is_active=True).last()
@@ -30,6 +30,7 @@ class Account(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     holder_name = models.CharField(max_length=200, blank=True, null=True)
     account_no = models.CharField(max_length=16)
+    email = models.EmailField(max_length=255, blank=True, null=True)
     balance = models.DecimalField(max_digits=15, decimal_places=2)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(default=timezone.now)
@@ -41,6 +42,7 @@ class Account(models.Model):
         indexes = [
             BrinIndex(fields=['id']),
             models.Index(fields=['id', 'is_active']),
+            models.Index(fields=['id', 'email']),
             models.Index(
                 fields=[
                     'holder_name',
