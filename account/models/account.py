@@ -18,6 +18,16 @@ class AccountManager(models.Manager):
     def get_account_by_no(self, account_no):
         return self.filter(account_no=account_no, is_active=True).last()
 
+    def account_exists(self, account_no):
+        if self.filter(account_no=account_no, is_active=True).count():
+            return True
+        return False
+
+    def email_exists(self, email):
+        if self.filter(email=email, is_active=True).count():
+            return True
+        return False
+
     def update_account(self, account_id, **req_data):
         self.filter(pk=account_id).update(**req_data)
         return self.filter(pk=account_id).last()
@@ -35,7 +45,7 @@ class Account(models.Model):
     holder_name = models.CharField(max_length=200, blank=True, null=True)
     account_no = models.CharField(max_length=16)
     email = models.EmailField(max_length=255, blank=True, null=True)
-    balance = models.DecimalField(max_digits=15, decimal_places=2)
+    balance = models.DecimalField(max_digits=15, decimal_places=2, default=200.00)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(default=timezone.now)
@@ -55,6 +65,8 @@ class Account(models.Model):
                 ]
             ),
         ]
+
+        ordering = ['-created_at']
 
         verbose_name = "Account"
         verbose_name_plural = "Accounts"

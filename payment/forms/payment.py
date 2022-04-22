@@ -19,12 +19,14 @@ class PaymentForm(ModelForm):
 		to_account = self.cleaned_data.get('to_account')
 		amount = self.cleaned_data.get('amount')
 
+		# Validating Amount
 		if amount > from_account.balance:
 			self._errors['amount'] = self.error_class(['Sender does\'t have enough balance to make this payment'])
 
 		if amount <= 0:
 			self._errors['amount'] = self.error_class(['Amount must be a positive value'])
 
+		# Validating Accounts
 		if from_account == to_account:
 			self._errors['from_account'] = self.error_class(['Sender and Receiver can\'t be same'])
 			self._errors['to_account'] = self.error_class(['Sender and Receiver can\'t be same'])

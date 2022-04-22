@@ -8,50 +8,58 @@
     </nav>
 
     <h5 class="text-center">Debit History</h5><hr>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th scope="col">Receiver Account</th>
-            <th scope="col">Account Holder</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Time</th>
-            <th scope="col">Date</th>
-        </tr>
-        </thead>
-        <tbody>
-            {% for debit in debits %}
-                <tr>
-                    <td>{{ debit.receiver_account_no }}</td>
-                    <td>{{ debit.receiver_name }}</td>
-                    <td>{{ debit.amount }}</td>
-                    <td>{{ debit.created_at | date:"H:i" }}</td>
-                    <td>{{ debit.created_at | date:"F d, Y" }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% if debits %}
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Receiver Account</th>
+                <th scope="col">Account Holder</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Time</th>
+                <th scope="col">Date</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for debit in debits %}
+                    <tr>
+                        <td>{{ debit.receiver_account_no }}</td>
+                        <td>{{ debit.receiver_name }}</td>
+                        <td>{{ debit.amount }}</td>
+                        <td>{{ debit.created_at | date:"H:i" }}</td>
+                        <td>{{ debit.created_at | date:"F d, Y" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <small class="opacity-30 text-nowrap">No debit history found</small>
+    {% endif %}
     <br>
     <h5 class="text-center">Credit History</h5><hr>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th scope="col">Sender Account</th>
-            <th scope="col">Account Holder</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Time</th>
-            <th scope="col">Date</th>
-        </tr>
-        </thead>
-        <tbody>
-            {% for credit in credits %}
-                <tr>
-                    <td>{{ credit.sender_account_no }}</td>
-                    <td>{{ credit.sender_name }}</td>
-                    <td>{{ credit.amount }}</td>
-                    <td>{{ credit.created_at | date:"H:i" }}</td>
-                    <td>{{ credit.created_at | date:"F d, Y" }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% if credits %}
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Sender Account</th>
+                <th scope="col">Account Holder</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Time</th>
+                <th scope="col">Date</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for credit in credits %}
+                    <tr>
+                        <td>{{ credit.sender_account_no }}</td>
+                        <td>{{ credit.sender_name }}</td>
+                        <td>{{ credit.amount }}</td>
+                        <td>{{ credit.created_at | date:"H:i" }}</td>
+                        <td>{{ credit.created_at | date:"F d, Y" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <small class="opacity-30 text-nowrap">No credit history found</small>
+    {% endif %}
 {% endblock content %}

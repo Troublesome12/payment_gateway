@@ -53,5 +53,7 @@ class Payment(models.Model):
             ),
         ]
 
+        ordering = ['-created_at']
+
         verbose_name = "Payment"
         verbose_name_plural = "Payments"

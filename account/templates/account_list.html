@@ -1,13 +1,17 @@
 {%  extends 'main.html' %}
 
 {% block content %}
+        <a class="btn btn-outline-primary float-end" href="{% url 'account-create' %}">Create New Account</a>
+
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item active" aria-current="page">Account List</li>
         </ol>
     </nav>
 
+
     <div class="list-group">
+
         {% if accounts %}
             {% for account in accounts %}
                 <a href="{% url 'account-payment-list' account.id %}" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">

@@ -147,11 +147,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+TIME_ZONE = env.str('TIME_ZONE', 'UTC')
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
 
 
@@ -183,6 +181,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
+
+# Flash Message
+# https://docs.djangoproject.com/en/4.0/ref/contrib/messages/
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 # Email Configurations
 # https://docs.djangoproject.com/en/4.0/topics/email/
