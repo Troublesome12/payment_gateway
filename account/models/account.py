@@ -10,7 +10,7 @@ class AccountManager(models.Manager):
         return self.create(**req_data)
 
     def get_accounts(self):
-        return self.filter(is_active=True).values('id', 'holder_name', 'email', 'account_no', 'balance')
+        return self.filter(is_active=True).order_by('-created_at')
 
     def get_account_by_id(self, account_id):
         return self.filter(pk=account_id, is_active=True).last()

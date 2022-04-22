@@ -1,3 +1,5 @@
+from http.client import HTTPResponse
+
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView
 from django.views import View
@@ -16,7 +18,9 @@ class AccountListView(ListView):
     model = Account
     template_name = 'account_list.html'
     context_object_name = 'accounts'
-    ordering = ['-created_at']
+
+    def get_queryset(self):
+        return Account.objects.get_accounts()
 
 
 class AccountCreateView(CreateView):
@@ -34,8 +38,7 @@ class AccountCreateView(CreateView):
             return render(request, "account_create.html", {'form': form_data})
 
         try:
-            account = form_data.save(commit=False)
-            account.save()
+            form_data.save()
             messages.success(request, 'Account creation successful')
             return redirect('/accounts/')
 

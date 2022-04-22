@@ -1,3 +1,6 @@
+import random
+import string
+
 
 def is_name_valid(name: str) -> bool:
     if not name:
@@ -16,3 +19,7 @@ def is_account_valid(account_no: str) -> bool:
     if len(account_no) == 16 and account_no.isdecimal():
         return True
     return False
+
+
+def generate_random_account_no(digit_len=16):
+    return ''.join(random.choices(string.digits, k=digit_len))
